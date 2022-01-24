@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "planvpc"
+version = "1.3.3"
+description = "Create a globally unique non-overlapping VPC configuration for all AWS regions."
+authors = ["Matt Stancliff <matt@genges.com>"]
+license = "Apache-2.0"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+boto3 = "^1.20.37"
+pandas = "^1.3.5"
+loguru = "^0.5.3"
+fire = "^0.4.0"
+
+[tool.poetry.dev-dependencies]
+
+[tool.poetry.scripts]
+planvpc = "planvpc.regions:cmd"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

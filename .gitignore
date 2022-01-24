@@ -1,0 +1,11 @@
+poetry.lock
+*.hcl
+
+# we don't save these by default, so if you want to use a
+# fork of this repo for your own change control, just generate
+# different names or delete this .gitignore in a branch for customization...
+cache.myregions.json
+planned.myregions.json
+suggested.myregions.tf
+.terraform
+*.tfstate*
