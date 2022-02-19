@@ -19,10 +19,11 @@ resource "aws_subnet" "public" {
   # ipv6_native = true
 
   tags = {
-    "Name"     = "public"
+    "Name"     = "public/${each.key}"
     "Location" = each.key
   }
 }
+
 
 resource "aws_subnet" "internal" {
   # Note: due to how AWS network services work, a purely internal
@@ -51,9 +52,37 @@ resource "aws_subnet" "internal" {
   private_dns_hostname_type_on_launch = "ip-name"
 
   tags = {
-    "Name"     = "internal"
+    "Name"     = "internal/${each.key}"
     "Location" = each.key
   }
+}
+
+# collect subnets for export
+data "aws_subnets" "public" {
+  filter {
+    name   = "vpc-id"
+    values = [local.vpc_id]
+  }
+
+  tags = {
+    Name = "public/*"
+  }
+
+  # verify the resources are created before attempting to populate the data
+  depends_on = [aws_subnet.public]
+}
+
+data "aws_subnets" "internal" {
+  filter {
+    name   = "vpc-id"
+    values = [local.vpc_id]
+  }
+
+  tags = {
+    Name = "internal/*"
+  }
+
+  depends_on = [aws_subnet.internal]
 }
 
 # You could add more subnets if needed, or you can just use this clean
