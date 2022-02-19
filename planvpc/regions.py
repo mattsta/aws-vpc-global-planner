@@ -49,6 +49,7 @@ except:
         # "us-gov-east-1",
         # "us-gov-west-1",
         # "us-gov-secret-1",
+        # "gov" regions are also konw as "isolated" regions referred to as us-iso-east-1 us-iso-west-2 us-isob-east-1
         # "us-gov-topsecret-1",
         # "us-gov-topsecret-2",
         # "me-south-1",
